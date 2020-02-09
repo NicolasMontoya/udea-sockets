@@ -1,19 +1,19 @@
-import socket
+import pickle
+import pytest
+from gita_socket.client import GitaClient
+from utils.packet import Packet
 
-HOST, PORT = "localhost", 9999
+
+@pytest.fixture
+def gita_client():
+    return GitaClient()
 
 
-def test_one():
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+def test_one(gita_client):
     try:
-        # Connect to server and send data
-        sock.connect((HOST, PORT))
-        data = 'upper test'
-        sock.sendall(bytes(data + "\n", "utf-8"))
-
-        # Receive data from the server and shut down
-        received = str(sock.recv(1024), "utf-8")
+        p = Packet(1, 'None')
+        res = gita_client.send_and_wait(p)
+        c = pickle.loads(res)
     finally:
-        sock.close()
-
-    assert data.upper() == received
+        gita_client.close_connection()
+    assert (c.response == 'co')
