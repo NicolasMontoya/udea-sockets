@@ -3,6 +3,8 @@ import socket
 import selectors
 import sys
 
+__all__ = ['GitaServer', 'BaseRequestHandler']
+
 if hasattr(selectors, 'PollSelector'):
     _ServerSelector = selectors.PollSelector
 else:
