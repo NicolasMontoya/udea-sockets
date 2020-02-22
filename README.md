@@ -423,7 +423,7 @@ Ahora en el host probamos nuestro nuevo objeto
 
 ````python
 from dump.host import Host
-from router.Router import Router
+from router.Switch import Router
 
 state = 1
 

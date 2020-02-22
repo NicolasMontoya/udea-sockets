@@ -2,7 +2,33 @@ from socket import AF_INET, SOCK_STREAM, socket
 
 
 class ServerDump:
+    """
+    Clase usada para implementar un servidor simple mediante sockets - Python 3
 
+    ...
+
+    Attributes
+    ----------
+    server_address : tuple
+        Tupla con los datos escenciales de configuración (HOST, PORT)
+    address_family : int
+        Familia de direcciones usada
+    socket_type : int
+        Tipo de socket usado
+    socket: socket
+        Socket usado para comunicación
+
+    Methods
+    -------
+    server_bind()
+        Permite configurar al servidor
+    server_activate()
+        Permite al servidor escuchar peticiones
+    server_close()
+        Cierra la comunicación del socket
+    connection_on(handle)
+        Comienza la comunicación y deja listo el sistema para enlazarse con el cliente
+    """
     request_queue_size = 5
 
     def __init__(self, server_address=("localhost", 4444), address_family=AF_INET, socket_type=SOCK_STREAM,
