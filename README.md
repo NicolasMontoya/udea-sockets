@@ -295,17 +295,17 @@ class Host:
     def name(self):
         return self.__name
 
-    def generate_package(self, data):
+    def generate_packet(self, data):
         return BasePacket(self.ip, self.ip_table[randint(0, 2)], data)
 
-    def generate_package_ip(self, data, ip):
+    def generate_packet(self, data, ip):
         return BasePacket(self.ip, ip, data)
 
     def send(self, data, ip=None):
         if ip is None:
-            return self.generate_package(data)
+            return self.generate_packet(data)
         else:
-            return self.generate_package_ip(data, ip)
+            return self.generate_packet(data, ip)
 
     # La función retorna el estado de la transacción, es decir si el paquete erá para el host o no.
     # También avisa si existe un error
@@ -423,7 +423,7 @@ Ahora en el host probamos nuestro nuevo objeto
 
 ````python
 from dump.host import Host
-from router.Switch import Router
+from router.Switch import Switch
 
 state = 1
 
@@ -441,7 +441,7 @@ if __name__ == "__main__":
     h3 = Host('Laptop', 0xC0A80003)
     hosts = [h1, h2, h3]
     # Creación del objeto router
-    r = Router('My router', 'CISCO', hosts)
+    r = Switch('My router', 'CISCO', hosts)
 
     # Envío del paquete
     packet = h1.send('Hola!', 0xC0A80002)
