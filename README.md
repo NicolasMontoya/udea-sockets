@@ -295,17 +295,17 @@ class Host:
     def name(self):
         return self.__name
 
-    def generate_package(self, data):
+    def generate_packet(self, data):
         return BasePacket(self.ip, self.ip_table[randint(0, 2)], data)
 
-    def generate_package_ip(self, data, ip):
+    def generate_packet_ip(self, data, ip):
         return BasePacket(self.ip, ip, data)
 
     def send(self, data, ip=None):
         if ip is None:
-            return self.generate_package(data)
+            return self.generate_packet(data)
         else:
-            return self.generate_package_ip(data, ip)
+            return self.generate_packet_ip(data, ip)
 
     # La función retorna el estado de la transacción, es decir si el paquete erá para el host o no.
     # También avisa si existe un error
@@ -388,14 +388,14 @@ el paquete al ser creado podrá verificar que la información enviada sea de tip
 variable broken en True. En caso de que la variable sea string verificar que no contenga las palabras 'isis', 
 'terrorismo', 'bomba'. En caso de que el paquete contenga dichas palabras pondrá la variable danger en True.
 
-### Mi amigo el router
+### Mi amigo el swicth
 
 Nuestra red va a crecer y necesitamos un sistema que permita redirigir los paquetes según la ip destino, para esto
 crearemos la clase router. En esta clase necesitamos definir las características mínimas del dispositivo como marca,
 nombre del equipo, entre otros. Una implementetación básica es:
 
 ````python
-class Router:
+class Switch:
     table = {}
 
     def __init__(self, name, brand, hosts):
@@ -423,7 +423,7 @@ Ahora en el host probamos nuestro nuevo objeto
 
 ````python
 from dump.host import Host
-from router.Router import Router
+from router.Switch import Switch
 
 state = 1
 
@@ -441,7 +441,7 @@ if __name__ == "__main__":
     h3 = Host('Laptop', 0xC0A80003)
     hosts = [h1, h2, h3]
     # Creación del objeto router
-    r = Router('My router', 'CISCO', hosts)
+    r = Switch('My router', 'CISCO', hosts)
 
     # Envío del paquete
     packet = h1.send('Hola!', 0xC0A80002)
@@ -468,7 +468,7 @@ siguientes:
 - Se debe permitir al usuario ingresar el host origen y el host destino, también el contenido del mensaje. OJO: Solo
 se debe poder enviar texto.
 - Todos los paquetes dirigidos para el host 3 deben ser descartados por el router. Esta funcionalidad debe implementarse
-en una clase que herede del Router propuesto en esta guía.
+en una clase que herede del Switch propuesto en esta guía.
 
 
 ### Server y client en Python
