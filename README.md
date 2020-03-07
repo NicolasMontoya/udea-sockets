@@ -40,115 +40,291 @@ serían propiedades y las funcionalidades asociadas, como ponerse en marcha o pa
 
 #### Conceptos fundamentales
 
-La programación orientada a objetos es una forma de programar que trata de encontrar una solución a estos problemas.
-Introduce nuevos conceptos, que superan y amplían conceptos antiguos ya conocidos. Entre ellos destacan los siguientes:
+El paradigma de programación POO busca modelar objetos relevantes a un problema mediante la descripción de sus atributos y 
+métodos. 
+
+Nota: Para la primer sección usaremos la consola de Python, o en su defecto puede usar el archivo main.py para ir
+explorando el comportamiento de Python.
 
 
-**Clase:**  Definiciones de las propiedades y comportamiento de un tipo de objeto concreto. La instanciación es la 
-lectura de estas definiciones y la creación de un objeto a partir de ellas.
-
-
-**Herencia:** Es la facilidad mediante la cual la clase D hereda en ella cada uno de los atributos y operaciones de C,
-como si esos atributos y operaciones hubiesen sido definidos por la misma D. Por lo tanto, puede usar los mismos métodos
-y variables publicas declaradas en C. Los componentes registrados como "privados" (private) también se heredan, pero
-como no pertenecen a la clase, se mantienen escondidos al programador y sólo pueden ser accedidos a través de otros
-métodos públicos. Esto es así para mantener hegemónico el ideal de OOP.
-
-**Objeto:** Entidad provista de un conjunto de propiedades o atributos (datos) y de comportamiento o funcionalidad
-(métodos) los mismos que consecuentemente reaccionan a eventos. Se corresponde con los objetos reales del mundo que nos
-rodea, o a objetos internos del sistema (del programa). Es una instancia a una clase.
-
-**Método:** Algoritmo asociado a un objeto (o a una clase de objetos), cuya ejecución se desencadena tras la recepción
-de un "mensaje". Desde el punto de vista del comportamiento, es lo que el objeto puede hacer. Un método puede producir
-un cambio en las propiedades del objeto, o la generación de un "evento" con un nuevo mensaje para otro objeto del 
-sistema.
-
-**Evento:** Es un suceso en el sistema (tal como una interacción del usuario con la máquina, o un mensaje enviado
-por un objeto). El sistema maneja el evento enviando el mensaje adecuado al objeto pertinente. También se puede
-definir como evento, a la reacción que puede desencadenar un objeto, es decir la acción que genera.
-
-**Mensaje:** Una comunicación dirigida a un objeto, que le ordena que ejecute uno de sus métodos con
-ciertos parámetros asociados al evento que lo generó.
-
-**Propiedad o atributo:** Contenedor de un tipo de datos asociados a un objeto (o a una clase de objetos), que hace los datos visibles desde fuera del objeto y esto se define como sus características predeterminadas, y cuyo valor puede ser alterado por la ejecución de algún método.
-
-**Estado interno:** Es una variable que se declara privada, que puede ser únicamente accedida y alterada por un método del objeto, y que se utiliza para indicar distintas situaciones posibles para el objeto (o clase de objetos). No es visible al programador que maneja una instancia de la clase.
-
-**Componentes de un objeto:** Atributos, identidad, relaciones y métodos.
-
-**Identificación de un objeto:** Un objeto se representa por medio de una tabla o entidad que esté compuesta por sus atributos y funciones correspondientes.
-
-En comparación con un lenguaje imperativo, una "variable", no es más que un contenedor interno del atributo del objeto
-o de un estado interno, así como la "función" es un procedimiento interno del método del objeto.
-
-#### Uso practico
-
-Para recordar la programación orientada a objetos inicialmente vamos a crear una clase en Python y usar algunos de los
-métodos especiales que nos brinda el lenguaje para manipular nuestros objetos.
-
-- Vamos a main.py y creemos la siguiente clase:
-
-```python
-# Note que la primera letra de la clase definida tiene una letra mayuscula, esta convención para digitar el código se
-# denomina CamelCase
-class MyClass:
-    def __init__(self):
-        # Es importante no combinar inglés y español DENTRO del código, está regla no aplica para mensajes
-        # ¿Qué debería hacer?
-        print("Inicialzando - mensaje al usuario")
-    def __del__(self):
-        # pass es un indicador que permite a la función no realizar nada.
-        pass
-    def __str__(self):
-        pass
-    def __eq__(self, other):
-        pass
-    def __lt__(self, other):
-        pass
-    def __gt__(self, other):
-        pass
-    def __add__(self, a):
-        pass
-
-# Es importante dar nombres descriptivos a nuestras variables, el código en algún momento puede ser usuado por otros,
-# incluso puede ser que nosotros mismo lo necesitemos en futuro y es importante poder entenderlo de nuevo.
-instanceOfMyClass = MyClass()
-```
-
-- Vamos a la consola y ejecutamos la siguiente linea. En este caso python al crearse una instancia de la clase MyClass
-llama al constructor el cual se identifica con la palabra clave init dentro de la clase.
+**Clase:**  Es una definición abstracta de un concepto. En programación permite definir las propiedades y 
+el comportamiento de un tipo de objeto concreto. 
 
 ```bash
-    python main.py
+PyDev console: starting.
+Python 3.7.6 (default, Jan  8 2020, 20:23:39) [MSC v.1916 64 bit (AMD64)] on win32
+# Note que la primera letra de la clase definida tiene una letra mayuscula, esta convención para digitar el código se
+# denomina CamelCase
+class Nodo:
+...     name = 'Nombre nodo'
+...     def send(self):
+...         print('Enviado ' + 'nombre')
+...     def recv(self):
+...         print('Recibido')
+... 
 ```
 
-NOTA: Si desea proponga una solución al problema planteado en MyClass, ¿Qué hacer cuando tengo mensajes en uno o más 
-idiomas?, ¿Cómo evitar que el código se mezcle con mensajes indeseados?
+**Objeto:** Se define como la instancia de una clase. Se encuentra provista de un conjunto de propiedades o atributos
+ propios (datos) y de comportamiento o funcionalidad (métodos). Estos se crean a partir de la definición de una clase 
+ y permite generar elementos con valores reales.
 
-- Ahora módifique la función **del**, escriba un mensaje cualquiera y ejecute de nuevo el script. En este caso, podríamos
-suponer que la función del, se ejecuta una vez el código termine, pero no es así, la función del solo se ejecuta
-cuando Python (su interprete) determina que el objeto no va a ser usado más, este proceso es automatico y en general
-no depende de desarrollador.
 
-- Agregue despues de la creación de la instancia la siguiente linea. En este caso la función del SI se ejecuta pues le
-estamos indicando a Python explicitamente que no vamos a usar la instancia de nuevo.
-
-```python
-# del instanceOfMyClass
+```bash
+    # Despues de definir la clase Nodo en la consola vamos a crear un objeto de la clase Nodo y usaremos su función
+    # send
+    miNodo = Nodo()
+    miNodo.send()
+    Enviado nombre
 ```
 
-- Vamos a jugar un poco con operadores y privacidad.
+NOTA: Si desea explore las funciones de Python getattr y setattr, las dos funciones nos permiten trabajar con
+atributos de un objeto en Python.
 
-Inicialmente modificamos la clase MyClass para asignar 0 a las variables __a y _a
+```bash
+    # Ejemplo de uso de las funciones getattr y setattrjhf,
+    >> setattr(l, 'nuevo',True)
+
+   >> getattr(l, 'nuevo')
+    True
+
+    >> l.nuevo
+    True
+```
+
+Python es un lenguaje muy flexible que permite manipular atributos en cualquier parte del código. Podemos incluso agregar
+y eliminar atributos desde fuera de la clase. Asi:
+
+
+```bash
+    # Ejemplo de uso de las funciones getattr y setattrjhf,
+    >> miNodo.type = 'x'
+    >> del miNodo.type
+```
+
+### Metodos especiales
+
+Las clases en Python tiene unos metodos especiales que permiten modificar el comportamiento de los objetos o incluso,
+redefinir comportamientos genericos del lenguaje. Algunos de estos metodos especiales son:
+
+**__init\__:** Método que se llama al crear una instancia de un objeto,  cumple con el rol de inicializador y se difiere
+del constructor porque se ejecuta despues de que el objeto ya a sido construido.
+
+````python
+
+class Node:
+     """Basic Node"""
+    def __init__(self, name = 'Por Defecto', address = 0x0771):
+        self.name = name
+        self.address = address
+        self.type = 'PC'
+        print('El objeto fue creado')
+    def send(self):
+        """Función para enviar datos"""
+        print('sending')
+    def recv(self):
+        """Función para recibir datos"""
+        print('Receiving')
+    
+````
+
+**__str\__:** Metodo que se ejecuta una vez se llame el objeto como string, es decir, cuando se solicita una impresión
+del objeto, este retorna el valor que se encuentre en la función __str\__
+
+````python
+
+class Node:
+     """Basic Node"""
+    def __init__(self, name = 'Por Defecto', address = 0x0771):
+        self.name = name
+        self.address = address
+        self.type = 'PC'
+        print('El objeto fue creado')
+    def send(self):
+        """Función para enviar datos"""
+        print('sending')
+    def recv(self):
+        """Función para recibir datos"""
+        print('Receiving')
+    def __str__(self) -> str:
+        """
+        Este metodo retorna las propiedades del objeto en un cadena de texto
+    
+        Returns
+        -------
+        str
+            Valor final del objeto
+        
+        Examples
+        --------
+        Despues de crear una instancia del objeto usamos el siguiente comando
+    
+        >> miNodo = Node('Mi nodo', 0x0102)
+        >> print(miNodo)
+    
+        """
+        # Ejemplo de documentación
+        return self.type + ' -> ' + ' Nombre: ' + self.name + ' Dirección: ' + self.address 
+
+    
+````
+
+En el ejemplo de uso de la función str podemos identificar los comentarios con docstring en formato Numpy. Mediante
+dicha documentación es posible dar claridad sobre avances de proyecto o simplemente clarificar el uso de un código
+determinado.
+
+**__del\__:** Metodo que se ejecuta una vez se destruye el objeto, este metodo es muy similar al destructor de C.
+Se usa para ejecutar una acción particular cuando una instancia de un objeto deja de existir. Generalmente el metodo
+del para destruir instancias no se utiliza y se le permite al interprete gestionar los recursos de los objetos a 
+discreción
+
+````python
+
+class Node:
+     """Basic Node"""
+    def __init__(self, name = 'Por Defecto', address = 0x0771):
+        self.name = name
+        self.address = address
+        self.type = 'PC'
+        print('El objeto fue creado')
+    def send(self):
+        """Función para enviar datos"""
+        print('sending')
+    def recv(self):
+        """Función para recibir datos"""
+        print('Receiving')
+    def __del__(self):
+        """ Función que se ejecuta en la destrucción de un objeto 
+        
+        Examples:
+        --------
+        Una vez creado un objeto, al destruirlo se llama esta función
+    
+        >> miNodo = Node('Nombre', 0x1373)
+        >> del miNodo
+        """
+        print('Hasta luego, Me destruyo')
+
+    
+````
+
+**__add\__:** Metodo que permite gestionar el operador suma para un objeto de la clase
+
+````python
+
+class Node:
+     """Basic Node"""
+    def __init__(self, name = 'Por Defecto', address = 0x0771):
+        self.name = name
+        self.address = address
+        self.type = 'PC'
+        print('El objeto fue creado')
+    def send(self):
+        """Función para enviar datos"""
+        print('sending')
+    def recv(self):
+        """Función para recibir datos"""
+        print('Receiving')
+    def __add__(self, other) -> Node:
+        """ Función que se ejecuta ante la suma
+        
+        Examples:
+        --------
+        Esta función se ejecuta cuando se suman dos Nodos
+    
+        >> a = Node('nombre 1', 0x01)
+        El objeto fue creado
+        >> b = Node('nombre 2', 0x01)
+        El objeto fue creado
+        >> c = a + b
+        El objeto fue creado
+        >> c.name
+        'nombre 2 ADD nombre 1'
+
+        """
+        if isinstance(other, Node):
+            return Node(other.name + ' ADD ' + self.name, 0x0)
+        else
+            return NotImplemented
+    
+````
+
+**__gt\__ , __eq\__ y __lt\__:** Metodos de comparación de objetos, permiten comparar cuando un
+objeto es mayor, menor o igual que otro, son de especial utilidad cuando necesitamos definir
+jerarquia entre diferentes objetos de la misma clase.
+
+````python
+
+class Node:
+     """Basic Node"""
+    def __init__(self, name = 'Por Defecto', address = 0x0771):
+        self.name = name
+        self.address = address
+        self.type = 'PC'
+        print('El objeto fue creado')
+    def send(self):
+        """Función para enviar datos"""
+        print('sending')
+    def recv(self):
+        """Función para recibir datos"""
+        print('Receiving')
+    def __gt__(self, other) -> bool:
+        if self.address > other.address:
+            return True
+        else :
+            return False
+    def __lt__(self, other) -> bool:
+        if self.address < other.address:
+            return True
+        else :
+            return False
+    def __eq__(self, other) -> bool:
+        if self.address == other.address:
+            return True
+        else :
+            return False
+    
+````
+
+````python
+
+>> a = Node('Nodo 1', 10)
+El objeto fue creado
+>> b = Node('Nodo 2', 8)
+El objeto fue creado
+>> c = a + b
+El objeto fue creado
+>> d = Node('Nodo 3', 23)
+El objeto fue creado
+>> e = Node('Nodo 4', 23)
+El objeto fue creado
+>> d == e
+True
+>> d != e
+False
+>> d > e
+False
+>> d > a
+True
+>> a > d
+False
+
+
+````
+
+En el anterior código podemos identificar un ejemplo donde mediante la dirección de la clase Node, podemos comparar
+cada uno de los objetos y determinar cuales son mayores, cuales son menores y su igualdad.
+
+ ### Vamos a jugar un poco con operadores y privacidad.
+
+Vamos a crear una clase llamada Link que permita comunicar Nodos. Para esto ¿Qué necesitamos? ... El link debe tener
+dos accesos multidireccionales, un nombre, una marca y unas caracteristicas.
+
 ```python
-class MyClass:
+class Link:
 
-    def __init__(self):
-        self.__a = 10
-        self._a = 5
-    @property
-    def a(self):
-        return self.__a
+    def __init__(self, name, brand):
+        self.name = name
+        self.brand = brand
     def __del__(self):
         pass
     def __str__(self):
@@ -159,37 +335,113 @@ class MyClass:
         pass
     def __gt__(self, other):
         pass
-    def __add__(self, a):
-        if isinstance(a, MyClass):
-            return self.__a + a.a
-        else:
-            return NotImplemented
+```
 
-instanceOfMyClass = MyClass()
-instanceOfMyClassB = MyClass()
+Ahora ¿qué pasa? si yo ejecuto las siguientes lineas:
 
-## print(instanceOfMyClass.__a)
-## print(instanceOfMyClass._a)
-## print(instanceOfMyClass.a)
-## print(instanceOfMyClass)
-## print(instanceOfMyClass + instanceOfMyClassB)
+```bash
+>> lin = Link('Mi link', 'CISCO')
+>> lin.name = 'Nuevo nombre'
+>> lin.brand = 'ASUS'
 
 ```
 
-Ejecutemos el código anterior descomentando la primer linea, ¿Qué sucedió?¿Por qué piensa que esto ocurre?, después 
-comente la primera y descomente la segunda, ¿Qué sucedio?¿En que se diferencia este caso con el anterior?, finalmente
-ejecute con la penultima linea, ¿Qué hace el sistema en este caso?¿Qué valor retorno, compare con el primer caso?.
+¿Debería poder modificar la marca de mi enlace?, ¿Debería poder modificar el nombre del enlace?
+Como muchos otro objetos, el nombre es una atributo que debería ser publico puesto que
+puede darsele un uso distinto y cambiar de nombre a discreción de usuario, el nombre es una atributo de identificación
+para el usuario y no cumple una función única, mientras que la marca si es un atributo privado que no debería poder
+modificarse, pues define que empresa construyo dicho objeto.
+
+```python
+class Link:
+
+    def __init__(self, name, brand):
+        self.name = name
+        self._brand = brand
+    def __del__(self):
+        pass
+    def __str__(self):
+        pass
+    def __eq__(self, other):
+        pass
+    def __lt__(self, other):
+        pass
+    def __gt__(self, other):
+        pass
+
+>> lin = Link('name', 'CISCO')
+>> lin._brand = 'Nuevo'
+>> print(lin._brand)
+```
+
+Ejecutemos el código anterior, ¿Qué sucedió?¿Existe alguna advertencia por parte del interprete de Python?.
+¿Que considera que significa el guión bajo en Python?.
+
+
+```python
+class Link:
+
+    def __init__(self, name, brand):
+        self.name = name
+        self.__brand = brand
+    def __del__(self):
+        pass
+    def __str__(self):
+        pass
+    def __eq__(self, other):
+        pass
+    def __lt__(self, other):
+        pass
+    def __gt__(self, other):
+        pass
+
+>> lin = Link('name', 'CISCO')
+>> print(lin.__brand)
+>> lin.__brand = 'Nuevo'
+>> print(lin.__brand)
+
+```
+
+Ejecutemos el código anterior, ¿Qué sucedió? ¿Qué diferencia existe con el caso anterior?.
+¿Que considera que significa el doble guión bajo en Python?, ¿El valor de la variable __brand realmente cambio?.
+
+```python
+class Link:
+
+    def __init__(self, name, brand):
+        self.name = name
+        self.__brand = brand
+    @property
+    def brand(self):
+        return self.__brand
+    def __del__(self):
+        pass
+    def __str__(self):
+        pass
+    def __eq__(self, other):
+        pass
+    def __lt__(self, other):
+        pass
+    def __gt__(self, other):
+        pass
+
+>> lin = Link('name', 'CISCO')
+>> print(lin.__brand)
+>> lin.__brand = 'Nuevo'
+>> print(lin.__brand)
+>> print(lin.brand)
+
+```
+
+¿Cómo es esto posible?, ¿Qué son las variables con doble guión bajo?
 
 En Python la privacidad no fue definida desde su concepción, esta situación llevo al lenguaje a ciertos escenarios donde
 tuvo que adaptarse mediante su evolución. Según los ejemplos anteriores podemos determinar que __ doble guión bajo
 implica privacidad, implica que el campo no puede accederse desde el exterior, mientras que un solo guión bajo no
-implica seguridad, sin embargo, el uso de la anotación property (@property) nos permite acceder a propiedades privadas
-mediante una función intermediaria que vigila que el campo no sea sobrescrito sin permiso explicito.
+implica seguridad, pero si es una adventencia al usuario que no debería tocar dicho atributo directamente. Otro dato 
+útil es el uso de la anotación property (@property) para acceder a propiedades privadas mediante una función
+ intermediaria que vigila que el campo no sea sobrescrito sin permiso explicito.
 
-Para la etapa final vamos a verificar la sobrecarga de operadores, para esto, primero analice el código de la función
-add, luego quite el comentario de la última linea y verifique la suma resultante de los dos objetos sea 10, imagine las posibilidad,
-al poder modificar el operador suma puede crear nuevos objetos con solo sumarlos. ¿Para que piensa que sirve el else 
-usado en la función add?.
 
 ### ¿POO en redes? La comunicación más simple
 
@@ -199,10 +451,10 @@ aprendiendo nos permiten describir solo un parte del sistema obviando los demás
 en cuenta lo anterior piense que elementos de red describen su equipo. Con esto en mente vamos a plantear la
 comunicación más simple, dos equipos conectados mediantes un cable coaxial.
 
-Una implementación sencilla de un host sería:
+Una implementación sencilla de un Nodo sería:
 
 ```python
-class Host:
+class Nodo:
 
     def __init__(self, name, ip=0xC0A80001, mask=0xFFFFFF00):
         self.__name = name
@@ -214,35 +466,28 @@ En la anterior implementación se define la ip, la mascara de red y un nombre pa
 variable donde se registren las IP que conoce el host así:
 
 ```python
-class Host:
+class Node:
 
     def __init__(self, name, ip=0xC0A80001, mask=0xFFFFFF00):
-        self.__name = name
+        self._name = name
         self.ip = ip
-        self.mask = mask
-        self.ip_table = [0xC0A80001, 0xC0A80002, 0xC0A80003, 0xC0A80004]
-        self.ip_table.remove(ip)
-```
 
-Pregunta: ¿Cuál es el objetivo de la  ultima linea?
+```
 
 Nuestro DumpHost se encuentra defino... pero ¿Qué hace nuestro HOST?, actualmente nada, sin embargo es nuestra tarea
 programar las dos funcionalidades más básicas de un host, enviar y recibir.
 
 ```python
-class Host:
+class Node:
 
-    def __init__(self, name, ip=0xC0A80001, mask=0xFFFFFF00):
+    def __init__(self, name, ip=0xC0A80001):
         self.__name = name
         self.ip = ip
-        self.mask = mask
-        self.ip_table = [0xC0A80001, 0xC0A80002, 0xC0A80003, 0xC0A80004]
-        self.ip_table.remove(ip)
     
-    def send(self, data):
+    def send(self):
         pass
     
-    def received(self, packet):
+    def received(self):
         pass
 ```
 
@@ -269,25 +514,23 @@ class BasePacket:
     def dst(self):
         return self.__dst
 
-    @data.setter
-    def data(self, data):
-        self.__data = data
 ```
 
-Ahora modificamos nuestra clase Host para que pueda enviar y recibir paquetes.
+El paquete debe tener sus atributos privados pues una vez estructurado no debería poder modificarse sus atributos 
+claves.
+
+Con la clase Link de los ejemplos pasados construiremos un elemento que permita transmite dichos paquetes, a su vez 
+modificaremos la clase Node.
 
 ```python
-from dump.packet import BasePacket
-from random import randint
 
-class Host:
+class Node:
 
-    def __init__(self, name, ip=0xC0A80001, mask=0xFFFFFF00):
+    def __init__(self, name, ip=0xC0A80001):
+        self.port = None
+        self.link = None
         self.__name = name
         self.ip = ip
-        self.mask = mask
-        self.ip_table = [0xC0A80001, 0xC0A80002, 0xC0A80003, 0xC0A80004]
-        self.ip_table.remove(ip)
 
     # Anotación propiedad que sirve para acceder de manera simple desde la instancia. Una vez definido el nombre
     # del equipo este no puede cambiarse.
@@ -295,180 +538,160 @@ class Host:
     def name(self):
         return self.__name
 
-    def generate_packet(self, data):
-        return BasePacket(self.ip, self.ip_table[randint(0, 2)], data)
+    def is_connected(self):
+        return self.link is not None
+
+    def connect(self, port, link):
+        self.link = link
+        self.port = port
+
+    def disconnect(self, port):
+        self.link = None
+        self.port = None
+
+class Link:
+    def __init__(self, name, brand):
+        self.name = name
+        self.__brand = brand
+        self.nodeOne = None
+        self.nodeTwo = None
+    @property
+    def brand(self):
+        return self.__brand
+
+    def connect(self, nodeOne: Node, nodeTwo: Node) -> bool:
+        self.nodeOne = nodeOne
+        self.nodeTwo = nodeTwo
+        nodeOne.connect(1,self)
+        nodeTwo.connect(2,self)
+
+
+>> a = Node('Nodo 1', 1)
+>> b = Node('Nodo 2', 2)
+>> a.is_connected()
+False
+>> b.is_connected()
+False
+>> lin = Link('Cable', 'ASUS')
+>> lin.connect(a, b)
+>> a.is_connected()
+True
+>> b.is_connected()
+True
+
+```
+
+Ahora tenemos un puente entre Nodos, finalmente tenemos que permitir enviar paquetes entre dispositivos conectados. 
+Para esto creamos una función llamada transmit en la clase Link que permita pasar la información de un nodo a otro y un
+buffer en cada Nodo que reciba los paquetes
+
+```python
+from dump.packet import BasePacket
+
+
+class Node:
+
+    def __init__(self, name, ip=0xC0A80001):
+        self.port = None
+        self.link = None
+        self.__name = name
+        self.buffer = []
+        self.ip = ip
+
+    # Anotación propiedad que sirve para acceder de manera simple desde la instancia. Una vez definido el nombre
+    # del equipo este no puede cambiarse.
+    @property
+    def name(self):
+        return self.__name
+
+    def is_connected(self):
+        return self.link is not None
+
+    def connect(self, port, link):
+        self.link = link
+        self.port = port
+
+    def disconnect(self, port):
+        self.link = None
+        self.port = None
 
     def generate_packet(self, data, ip):
         return BasePacket(self.ip, ip, data)
 
-    def send(self, data, ip=None):
-        if ip is None:
-            return self.generate_packet(data)
-        else:
-            return self.generate_packet(data, ip)
+    def send(self, data, ip):
+        self.link.transmit(self.generate_packet(data, ip))
 
     # La función retorna el estado de la transacción, es decir si el paquete erá para el host o no.
     # También avisa si existe un error
-    def received(self, packet):
-        # Verificamos que la variable de entrada sea una instancia de BasePacket
-        if isinstance(packet, BasePacket):
-            # Verificamos que el paquete sea para nosotros
-            if packet.dst == self.ip:
-                print("Paquete recibido. " + str(self.ip))
-                print(packet.data)
-                return True
-            else:
-                print("Paquete rechazado. Mi ip es " + str(self.ip) + ' ,el paquete es para ' + str(packet.dst))
-                return False
+    def received(self):
+        if self.buffer:
+            return self.buffer.pop()
         else:
-            print("Error el paquete está en mal estado")
-            return False
-```
-
-Con nuestros objetos definidos ahora en el main.py vamos a probar nuestro sistema. Primero definimos los dos HOST de
-
-```python
-from dump.host import Host
+            print('No hay datos')
 
 
-if __name__ == "__main__":
-    h1 = Host('PC Gamer', 0xC0A80001)
-    h2 = Host('Laptop', 0xC0A80002)
-```
-
-Ahora vamos a crear un loop que nos permita enviar texto entre los dos host de manera recurrente, para esto creamos
-los mensajes a enviar y un estado que nos permita reconocer el punto donde se encuentra el sistema.
-
-```python
-from dump.host import Host
-
-state = 1
-
-Messages = ['Mensaje 1!', 'Mensaje 2!', 'Mensaje 3!', 'Mensaje 4!', 'Mensaje 5!', 'Mensaje 6!', 'Mensaje 7!', 'Mensaje 8!']
-
-if __name__ == "__main__":
-    h1 = Host('PC Gamer', 0xC0A80001)
-    h2 = Host('Laptop', 0xC0A80002)
-```
-
-En el loop incluiremos la función de envío y recepción para que los dos host se envien el paquete
-
-```python
-from dump.host import Host
-
-state = 1
-
-Messages = ['Mensaje 1!', 'Mensaje 2!', 'Mensaje 3!', 'Mensaje 4!', 'Mensaje 5!', 'Mensaje 6!', 'Mensaje 7!', 'Mensaje 8!']
-
-def next_message(received, st):
-    if received:
-        st += 1
-
-if __name__ == "__main__":
-    h1 = Host('PC Gamer', 0xC0A80001)
-    h2 = Host('Laptop', 0xC0A80002)
-        for i in range(8):
-        packet = h1.send(Messages[state], 0xC0A80002)
-        is_received = h2.received(packet)
-        next_message(is_received, state)
-
-```
-
-En la lógica anterior el paquete es enviado por un host y recibido por el otro (conexión directa), el loop se repite
-durante 8 veces y se genera un paquete con IP destino aleatoria (obtenida de la tabla definida al inicio), en algunos
-casos el paquete le pertenece al host y es recibido, en otros simplemente es rechazado.
-
-Actividad opcional: Realice una implementación Plus del sistema propuesto pero ahora con procesos, para esto puede 
-ayudarse de la librería https://docs.python.org/2/library/multiprocessing.html, en este sistema el objetivo es
-leer los paquetes una vez sean enviados sin necesidad de hacer un loop.
-
-Con su primer de sistema de comunicación finalizado ahora va a implementar un nuevo tipo de paquete llamado
-PersonalPacket, dicho paquete heredará de BasePacket y tendrá dos variables extra **danger** y **broken**, 
-el paquete al ser creado podrá verificar que la información enviada sea de tipo string, si esto no sucede pondrá la
-variable broken en True. En caso de que la variable sea string verificar que no contenga las palabras 'isis', 
-'terrorismo', 'bomba'. En caso de que el paquete contenga dichas palabras pondrá la variable danger en True.
-
-### Mi amigo el router
-
-Nuestra red va a crecer y necesitamos un sistema que permita redirigir los paquetes según la ip destino, para esto
-crearemos la clase router. En esta clase necesitamos definir las características mínimas del dispositivo como marca,
-nombre del equipo, entre otros. Una implementetación básica es:
-
-````python
-class Router:
-    table = {}
-
-    def __init__(self, name, brand, hosts):
+class Link:
+    def __init__(self, name, brand):
         self.name = name
         self.__brand = brand
-        self.hosts = [self.def_host(host) for host in hosts]
+        self.connected_devices = {}
+    @property
+    def brand(self):
+        return self.__brand
 
-    def def_host(self, host):
-        self.table[host.ip] = host
-
-    def received_packet(self, packet):
-        self.table[packet.dst].received(packet)
-
-````
-
-En esta clase se almacenan los hosts, estos son un diccionario donde la IP está relacionada con la referencia del 
-objeto que representa el host. ¿Qué otra manera se te ocurre para interconectar los host con el router SIN cambiar las
-clases antiguas.
-
-Nota: Es importante aprender a reusar código sin causar breaking changes, pues el propósito de POO es extender poco a
-poco las funcionalidades de un código y no reescribirlo. Piensa bien antes de definir procesos o algoritmos en como te
-afectará en el futuro las decisiones de diseño que tomes.
-
-Ahora en el host probamos nuestro nuevo objeto
-
-````python
-from dump.host import Host
-from router.Switch import Switch
-
-state = 1
-
-Messages = ['Mensaje 1!', 'Mensaje 2!', 'Mensaje 3!', 'Mensaje 4!', 'Mensaje 5!', 'Mensaje 6!', 'Mensaje 7!', 'Mensaje 8!']
+    def connect(self, node_one: Node, node_two: Node) -> bool:
+        self.connected_devices[node_one.ip] = node_one
+        self.connected_devices[node_two.ip] = node_two
+        node_one.connect(1,self)
+        node_two.connect(2,self)
+    
+    def transmit(self, packet: BasePacket):
+        self.connected_devices[packet.dst].buffer.append(packet)
 
 
-def next_message(received, st):
-    if received:
-        st += 1
+```
+
+Con nuestros objetos definidos ahora vamos a probar nuestro sistema. Primero definimos los dos HOST de
+
+```python
+
+>> a = Node('Nodo 1', 1)
+>> b = Node('Nodo 2', 2)
+>> lin = Link('Cable', 'UdeA')
+>> lin.connect(a,b)
+>> a.is_connected()
+True
+>> b.is_connected()
+True
+>> a.send('Mensaje', 2)
+>> packet = b.received()
+>> packet.data
+'Mensaje'
+>> packet.dst
+2
+>> packet.src
+1
 
 
-if __name__ == "__main__":
-    h1 = Host('PC Gamer', 0xC0A80001)
-    h2 = Host('Laptop', 0xC0A80002)
-    h3 = Host('Laptop', 0xC0A80003)
-    hosts = [h1, h2, h3]
-    # Creación del objeto router
-    r = Switch('My router', 'CISCO', hosts)
+```
 
-    # Envío del paquete
-    packet = h1.send('Hola!', 0xC0A80002)
-    print("Paquete enviado para " + str(packet.dst) )
-    # Recepción y envío a su correspondiente destinatario
-    r.received_packet(packet)
+Actividad
 
-````
-La respuesta del código anterior debe ser similar a:
+1. Cree un nuevo Objeto SuperLink que herede sus caracteristicas de Lin y permita definir parametros como el tiempo
+retardo con el cual llegan los paquetes, la velocidad del medio, entre otros que usted considere importante.
 
-````bash
-PyDev console: starting.
-Python 3.7.6 (default, Jan  8 2020, 20:23:39) [MSC v.1916 64 bit (AMD64)] on win32
-runfile('main.py', wdir='Sockets')
-Paquete enviado para 3232235522
-Recibido en 3232235522
-Datos:Hola!
-````
+2. Modifique los Nodos para que su IP cumpla con las caracteristicas propias. Si la IP es incorrecta no permita conectar
+al Link.
 
-Ahora es tu turno debes recrear el enlace pero con muchas más funcionalidades. Los requisitos funcionales son los
-siguientes:
+3. Si el host destino no está en la misma red descarte el paquete desde el host y debe aparecer un mensaje Host fuera
+de red.
 
-- El paquete no debe aparecer en el main.py, es decir, el host debe enviar directamente el mensaje al objeto router.
-- Se debe permitir al usuario ingresar el host origen y el host destino, también el contenido del mensaje. OJO: Solo
-se debe poder enviar texto.
-- Todos los paquetes dirigidos para el host 3 deben ser descartados por el router. Esta funcionalidad debe implementarse
-en una clase que herede del Router propuesto en esta guía.
+
+4 .Implementar un nuevo tipo de paquete llamado PersonalPacket, dicho paquete heredará de BasePacket y
+ tendrá dos variables extra **danger** y **broken**,  el paquete al ser creado podrá verificar que la información 
+ enviada sea de tipo string, si esto no sucede pondrá lavariable broken en True. En caso de que la variable sea string 
+ verificar que no contenga las palabras 'isis', 'terrorismo', 'bomba'. En caso de que el paquete contenga dichas
+  palabras pondrá la variable danger en True.
 
 
 ### Server y client en Python
